@@ -19,7 +19,7 @@ const save = () => {
 
 const updateCounter = () => {
   const unfinished = tasks.filter((task) => !task.done).length;
-  counter.innerText = `Total: ${tasks.length} | Belum selesai: ${unfinished}`;
+  counter.innerText = `Total Task: ${tasks.length} | Not finished yet: ${unfinished}`;
 };
 
 const render = () => {
@@ -60,7 +60,7 @@ const render = () => {
 
 button.addEventListener("click", () => {
   if (input.value.trim() === "") {
-    alert("Tugas tidak boleh kosong!");
+    alert("To-Do list cannot be empty!");
     return;
   }
 
@@ -87,7 +87,7 @@ const loadFromAPI = async () => {
     );
 
     if (!response.ok) {
-      throw new Error("Gagal mengambil data");
+      throw new Error("Failed to retrieve data");
     }
 
     const data = await response.json();
@@ -100,7 +100,7 @@ const loadFromAPI = async () => {
     save();
     render();
   } catch (error) {
-    alert("Terjadi kesalahan saat mengambil data!");
+    alert("An error occurred while retrieving data!");
     console.error(error);
   } finally {
     loadingText.innerText = "";
@@ -112,7 +112,7 @@ loadBtn.addEventListener("click", loadFromAPI);
 const clearBtn = document.getElementById("clearBtn");
 
 clearBtn.addEventListener("click", () => {
-  const yakin = confirm("Apakah Anda yakin ingin menghapus SEMUA tugas?");
+  const yakin = confirm("Are you sure you want to delete ALL tasks?");
 
   if (yakin) {
     tasks = [];
