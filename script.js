@@ -60,7 +60,7 @@ const render = () => {
 
 button.addEventListener("click", () => {
   if (input.value.trim() === "") {
-    alert("To-Do list cannot be empty!");
+    alert("To-do list cannot be empty!");
     return;
   }
 
